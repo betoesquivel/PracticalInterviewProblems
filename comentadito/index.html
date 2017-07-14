@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comentadito</title>
+  <link rel="stylesheet" href="node_modules/milligram/dist/milligram.min.css">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Comentadito</h1>
+    <section class="row">
+      <div class="column">
+        <h2>Hola, escribe un comentario abajo!</h2>
+        <textarea></textarea>
+      </div>
+      <div class="column">
+        <h2>Enviado al servidor</h2>
+        <div id="server-comment" class="box">
+          Aquí va lo que le vas a "enviar al servidor"
+        </div>
+      </div>
+    </section>
+    <section id="results">
+      <h2>Comentario reconstruido desde el servidor</h2>
+      <div id="parsed-server-comment" class="box">
+        Aquí va tu reconstrucción del comentario que viene "desde el servidor".
+      </div>
+    </section>
+  </div>
+  <script type="text/javascript" src="index.js"></script>
+<br/>
+<br/>
+<h5>Scroll down for instructions.</h5>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    <section class="container" id="instructions">
+      <h1>Instructions</h1>
+<h2><a id="The_problem_1"></a>The problem</h2>
+<p>You have a comment textarea below, and want to mimic a social network’s mentions functionality.</p>
+<h3><a id="Task_1__comment_with_mentions_to_comment_with_mentions_and_email_4"></a>Task 1 - comment with mentions to comment with mentions and email</h3>
+<p>The comment that the user types, may contain mentions of other users. We would like to store, not only the mentions but the mentioned user’s email as well in the comment text in the server. This way later on, when building search functionality we can search the comments by username or email, and any device that calls the server asking for comments, can get all the mention data in one request. Therefore, your task is to convert the comment typed by the user into a comment with mentions and emails.</p>
+<h5><a id="environment_7"></a>environment</h5>
+<p>In the <code>index.js</code> file, we have subscribed the function <code>updateCommentText</code> to the <code>input</code> event in the comment textarea. Therefore, this function will be called everytime the user changes the input in the comment textarea.<br>
+This <code>updateCommentText</code> function calls <code>parseCommentText</code> everytime, and writes the result of that function as innerText in the <code>&lt;div id=&quot;parsed-server-comment&quot;&gt;</code>.<br>
+We also have a global variable called <code>data</code>, which is an object simulating our database.<br>
+It contains <code>{ 'mention_key': 'mention_email' }</code></p>
+<h6><a id="task_13"></a>task</h6>
+<p>Your mission, if you choose to accept it (:P), is to <em>change</em> the code in <code>parseCommentText</code> so that it returns the comment text enriched with the email data of each user mentioned like so:</p>
+<ol>
+<li>Este es un comentario mencionando a @beto. // user types this</li>
+<li>Este es un comentario mencionando a @beto&lt;useremail_goes_here&gt; // “server” receives this</li>
+</ol>
+<h3><a id="Task_2__server_comment_to_UI_comment_with_styled_mentions_19"></a>Task 2 - server comment to UI comment with styled mentions</h3>
+<p>After you have done the last part, you should see 2 boxes being filled with your “server” data. In this task, you will change the code of the <code>parseServerCommentData</code> function so that the innerHTML that is being set in the <code>#parsed-server-comment</code> div shows the comment text just as the user typed it, but with the mentions in <strong>blue</strong> as <strong>links</strong> to “mailto:email”.</p>
+<ol start="3">
+<li>Este es un comentario mencionando a <a href="mailto:ppbeto94@gmail.com">@beto</a></li>
+</ol>
+<p>Tips:</p>
+<ul>
+<li>Don’t try to over complicate your solution. If something isn’t specified you can ask us about it.</li>
+<li>Essentially all you have to do is convert the comment into a format that is useful in the server for search (search comments that mention a user or his email), and that still makes it possible for you to restore.</li>
+<li>While the server only receives a string, it can be a JSON object as well if you need to pass in more data.</li>
+<li>You can store any additional data as well in the frontend.</li>
+</ul>
+    </section>
+    <div class="container center">
+      <img src="sample.png"/>
+    </div>
+</body>
+</html>
